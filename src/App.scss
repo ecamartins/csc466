@@ -24,6 +24,58 @@
             }
         }
     }
+
+    /* General styling for the page */
+    .log-page-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 80%;
+        margin: 24px auto;
+        padding: 2rem;
+
+    }
+
+    /* Title styling */
+    .log-entry-title {
+        font-weight: bold;
+        font-size: 24px;
+        font-family: monospace;
+        color: #333;
+        margin-bottom: 1.5rem;
+    }
+
+    /* FormControl styling for select input */
+    .MuiFormControl-root {
+        margin-bottom: 1.5rem;
+    }
+
+    /* Label for Select input */
+    .MuiInputLabel-root {
+        color: #555;
+    }
+
+
+    .MuiSelect-root:hover {
+        border-color: #007bff;
+        /* Change border color on hover */
+    }
+
+    /* Log entry content */
+    .log-entry-content {
+        background-color: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        font-size: 1rem;
+        color: #555;
+        white-space: pre-line;
+        /* Preserve new lines */
+        overflow-wrap: break-word;
+        /* Ensure long content wraps */
+    }
 }
 
 body {
