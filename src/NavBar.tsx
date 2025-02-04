@@ -4,7 +4,6 @@ import { AppPageType } from "./utils/common";
 import RouterIcon from '@mui/icons-material/Router';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from "react-router-dom";
-import App from "./App";
 
 
 interface NavBarProps {
