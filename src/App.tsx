@@ -4,6 +4,7 @@ import './App.scss'
 import { HomePage } from './HomePage';
 import { LogPage } from './LogPage';
 import { NavBar } from './NavBar';
+import { ProposalPage } from './ProposalPage';
 import { AppPageType } from './utils/common';
 
 
@@ -14,8 +15,11 @@ function App() {
         <div className="app-wrapper">
             <CssBaseline />
             <NavBar onNavBarClick={(newPage: AppPageType) => setPage(newPage)} />
-            <HomePage show={page === AppPageType.HOME} />
-            <LogPage show={page === AppPageType.LOGS} />
+            <div className="content">
+                <HomePage show={page === AppPageType.HOME} />
+                <LogPage show={false} />
+                <ProposalPage show={page === AppPageType.PROPOSAL} />
+            </div>
         </div>
     )
 }

@@ -1,0 +1,1 @@
+export const homePageDescription = "This is a course project website for CSC 466: Overlay and Peer-to-Peer Networking. This website contains updates and information gathered from a research project on the topic of load-balancing techniques for distributed storage over the network."

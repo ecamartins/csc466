@@ -26,7 +26,7 @@ export const NavBar: React.FC<NavBarProps> = React.memo(({ onNavBarClick }) => {
 
     return (
         <>
-            <AppBar position="static">
+            <AppBar position="fixed">
                 <Container maxWidth={false} disableGutters sx={{ px: 2 }}>
                     <Toolbar disableGutters sx={{ px: 2 }}>
                         {/* Left Section */}
@@ -83,8 +83,8 @@ export const NavBar: React.FC<NavBarProps> = React.memo(({ onNavBarClick }) => {
                                 <MenuItem key={AppPageType["HOME"]} onClick={() => handleCloseNavMenu(AppPageType.HOME)}>
                                     <Typography textAlign="center">{AppPageType[AppPageType["HOME"]]}</Typography>
                                 </MenuItem>
-                                <MenuItem key={AppPageType["LOGS"]} onClick={() => handleCloseNavMenu(AppPageType.LOGS)}>
-                                    <Typography textAlign="center">{AppPageType[AppPageType["LOGS"]]}</Typography>
+                                <MenuItem key={AppPageType["PROPOSAL"]} onClick={() => handleCloseNavMenu(AppPageType.PROPOSAL)}>
+                                    <Typography textAlign="center">{AppPageType[AppPageType["PROPOSAL"]]}</Typography>
                                 </MenuItem>
                             </Menu>
                         </Box>
@@ -126,10 +126,10 @@ export const NavBar: React.FC<NavBarProps> = React.memo(({ onNavBarClick }) => {
                                 <Typography textAlign="center">{AppPageType[AppPageType["HOME"]]}</Typography>
                             </MenuItem>
                             <MenuItem
-                                key={AppPageType["LOGS"]}
-                                onClick={() => handleCloseNavMenu(AppPageType.LOGS)}
+                                key={AppPageType["PROPOSAL"]}
+                                onClick={() => handleCloseNavMenu(AppPageType.PROPOSAL)}
                             >
-                                <Typography textAlign="center">{AppPageType[AppPageType["LOGS"]]}</Typography>
+                                <Typography textAlign="center">{AppPageType[AppPageType["PROPOSAL"]]}</Typography>
                             </MenuItem>
                         </Box>
                     </Toolbar>

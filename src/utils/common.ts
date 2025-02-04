@@ -1,6 +1,7 @@
 export enum AppPageType {
     HOME,
     LOGS,
+    PROPOSAL,
 }
 
 interface LogEntries {

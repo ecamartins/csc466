@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
-import RouterIcon from '@mui/icons-material/Router';
 import * as React from "react";
+import { homePageDescription } from "./utils/constants";
 
 interface HomePageProps {
     show: boolean;
@@ -13,11 +13,10 @@ export const HomePage: React.FC<HomePageProps> = React.memo(({ show }) => {
         <div className="home-page-content-wrapper">
             <div className="home-page-content">
                 <div className="home-page-site-title">
-                    <RouterIcon sx={{ mr: 1, fontSize: 50 }} />
                     <Typography
                         variant="h6"
-                        noWrap
                         component="a"
+                        align="center"
                         sx={{
                             mr: 2,
                             fontFamily: 'monospace',
@@ -25,13 +24,13 @@ export const HomePage: React.FC<HomePageProps> = React.memo(({ show }) => {
                             letterSpacing: '.3rem',
                             color: 'inherit',
                             textDecoration: 'none',
-                            fontSize: 50
+                            fontSize: 30
                         }}
                     >
-                        CSC466-Project
+                        Distributed Storage: Load-balancing Techniques over the Network
                     </Typography>
                 </div>
-                <p className="home-page-site-description">Description Here.</p>
+                <p className="home-page-site-description">{homePageDescription}</p>
             </div>
         </div>
 

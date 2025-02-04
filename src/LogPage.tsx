@@ -1,6 +1,7 @@
 import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent } from "@mui/material";
 import * as React from "react";
 import { logs } from "./utils/common";
+import './App.scss';
 
 interface LogPageProps {
     show: boolean;
