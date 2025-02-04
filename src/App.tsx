@@ -1,26 +1,26 @@
 import { CssBaseline } from '@mui/material';
-import { useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.scss'
 import { HomePage } from './HomePage';
-import { LogPage } from './LogPage';
 import { NavBar } from './NavBar';
 import { ProposalPage } from './ProposalPage';
-import { AppPageType } from './utils/common';
 
 
 function App() {
-    const [page, setPage] = useState<AppPageType>(AppPageType.HOME);
 
     return (
+        <BrowserRouter>
         <div className="app-wrapper">
             <CssBaseline />
-            <NavBar onNavBarClick={(newPage: AppPageType) => setPage(newPage)} />
+            <NavBar />
             <div className="content">
-                <HomePage show={page === AppPageType.HOME} />
-                <LogPage show={false} />
-                <ProposalPage show={page === AppPageType.PROPOSAL} />
+            <Routes>
+                <Route path="/" element={<HomePage/>} />
+                <Route path="/proposal" element={<ProposalPage/>} />
+            </Routes>
             </div>
         </div>
+        </BrowserRouter>
     )
 }
 

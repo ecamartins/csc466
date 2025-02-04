@@ -3,15 +3,16 @@ import * as React from "react";
 import { AppPageType } from "./utils/common";
 import RouterIcon from '@mui/icons-material/Router';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useNavigate } from "react-router-dom";
+import App from "./App";
 
 
 interface NavBarProps {
-    onNavBarClick: (page: AppPageType) => void;
 }
 
-const navBarStyles = { color: "primary.light", cursor: "pointer", "&:hover": { textDecoration: "underline" } };
 
-export const NavBar: React.FC<NavBarProps> = React.memo(({ onNavBarClick }) => {
+export const NavBar: React.FC<NavBarProps> = React.memo(() => {
+    const navigate = useNavigate();
 
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
@@ -21,7 +22,17 @@ export const NavBar: React.FC<NavBarProps> = React.memo(({ onNavBarClick }) => {
 
     const handleCloseNavMenu = (page: AppPageType) => {
         setAnchorElNav(null);
-        onNavBarClick(page);
+        
+        switch (page){
+            case AppPageType.PROPOSAL:
+                navigate("/proposal");
+                break;
+            case AppPageType.HOME:
+                navigate("/");
+                break;
+            default:
+
+        }
     };
 
     return (
@@ -32,7 +43,7 @@ export const NavBar: React.FC<NavBarProps> = React.memo(({ onNavBarClick }) => {
                         {/* Left Section */}
                         <RouterIcon
                             sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, cursor: 'pointer' }}
-                            onClick={() => onNavBarClick(AppPageType.HOME)}
+                            onClick={() => navigate("/")}
                         />
                         <Typography
                             variant="h6"
@@ -92,7 +103,7 @@ export const NavBar: React.FC<NavBarProps> = React.memo(({ onNavBarClick }) => {
                         {/* Title for Small Screens */}
                         <RouterIcon
                             sx={{ display: { xs: 'flex', md: 'none' }, mr: 1, cursor: 'pointer' }}
-                            onClick={() => onNavBarClick(AppPageType.HOME)}
+                            onClick={() => navigate("/")}
                         />
                         <Typography
                             variant="h5"

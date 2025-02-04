@@ -2,12 +2,7 @@ import { Typography } from "@mui/material";
 import * as React from "react";
 import { homePageDescription } from "./utils/constants";
 
-interface HomePageProps {
-    show: boolean;
-}
-
-export const HomePage: React.FC<HomePageProps> = React.memo(({ show }) => {
-    if (!show) return <></>;
+export const HomePage: React.FC = React.memo(() => {
 
     return (<>
         <div className="home-page-content-wrapper">
