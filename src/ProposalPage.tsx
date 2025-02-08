@@ -9,7 +9,7 @@ export const ProposalPage: React.FC = React.memo(() => {
                 Project Proposal
             </div>
             <div className="proposal-pdf">
-            <iframe src="/tmp.pdf" width="1000px" height="1000px"></iframe>
+            <iframe src="/project-proposal.pdf" width="1000px" height="1000px"></iframe>
             </div>
 
         </div>
