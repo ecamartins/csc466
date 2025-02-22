@@ -1,0 +1,19 @@
+name: ci
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-build:
+    name: test build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+
+      - name: install dependencies
+        run: npm ci
+
+      - name: build
+        run: npm run build
