@@ -9,6 +9,25 @@ import { useNavigate } from "react-router-dom";
 interface NavBarProps {
 }
 
+type PageEntry = {
+	header: string,
+	path: AppPageType,
+}
+
+const PAGES: PageEntry[] = [
+	{
+		header: "HOME",
+		path: AppPageType.HOME,
+	},
+	{
+		header: "PROPOSAL",
+		path: AppPageType.PROPOSAL,
+	},
+	{
+		header: "BIWEEKLY UPDATE 1",
+		path: AppPageType.BIWEEKLY1,
+	},
+]
 
 export const NavBar: React.FC<NavBarProps> = React.memo(() => {
     const navigate = useNavigate();
@@ -23,12 +42,18 @@ export const NavBar: React.FC<NavBarProps> = React.memo(() => {
         setAnchorElNav(null);
         
         switch (page){
-            case AppPageType.PROPOSAL:
-                navigate("/proposal");
-                break;
             case AppPageType.HOME:
                 navigate("/");
                 break;
+
+            case AppPageType.PROPOSAL:
+                navigate("/proposal");
+                break;
+
+            case AppPageType.BIWEEKLY1:
+                navigate("/bw1");
+                break;
+
             default:
 
         }
@@ -90,12 +115,16 @@ export const NavBar: React.FC<NavBarProps> = React.memo(() => {
                                 open={Boolean(anchorElNav)}
                                 onClose={() => setAnchorElNav(null)}
                             >
-                                <MenuItem key={AppPageType["HOME"]} onClick={() => handleCloseNavMenu(AppPageType.HOME)}>
-                                    <Typography textAlign="center">{AppPageType[AppPageType["HOME"]]}</Typography>
-                                </MenuItem>
-                                <MenuItem key={AppPageType["PROPOSAL"]} onClick={() => handleCloseNavMenu(AppPageType.PROPOSAL)}>
-                                    <Typography textAlign="center">{AppPageType[AppPageType["PROPOSAL"]]}</Typography>
-                                </MenuItem>
+								{
+									PAGES.map((entry) => {
+										return (
+											<MenuItem key={entry.path} 
+												onClick={() => handleCloseNavMenu(entry.path)}>
+												<Typography textAlign="center">{entry.header}</Typography>
+											</MenuItem>
+										)
+									})
+								}
                             </Menu>
                         </Box>
 
@@ -129,18 +158,20 @@ export const NavBar: React.FC<NavBarProps> = React.memo(() => {
 
                         {/* Right Section */}
                         <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                            <MenuItem
-                                key={AppPageType["HOME"]}
-                                onClick={() => handleCloseNavMenu(AppPageType.HOME)}
-                            >
-                                <Typography textAlign="center">{AppPageType[AppPageType["HOME"]]}</Typography>
-                            </MenuItem>
-                            <MenuItem
-                                key={AppPageType["PROPOSAL"]}
-                                onClick={() => handleCloseNavMenu(AppPageType.PROPOSAL)}
-                            >
-                                <Typography textAlign="center">{AppPageType[AppPageType["PROPOSAL"]]}</Typography>
-                            </MenuItem>
+							{
+								PAGES.map((entry) => {
+									return (
+										<MenuItem
+											key={entry.path}
+											onClick={() => handleCloseNavMenu(entry.path)}
+										>
+											<Typography textAlign="center">
+												{entry.header}
+											</Typography>
+										</MenuItem>
+									)
+								})
+							}
                         </Box>
                     </Toolbar>
                 </Container>
