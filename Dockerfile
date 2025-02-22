@@ -40,6 +40,12 @@ FROM nginx
 # Copy built application
 COPY --from=build /app/dist /usr/share/nginx/html
 
+# Remove the default nginx config
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Use our own nginx config to ensure we always route to index.html
+COPY nginx/nginx.conf /etc/nginx/conf.d
+
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 80
 CMD [ "/usr/sbin/nginx", "-g", "daemon off;" ]
