@@ -23,7 +23,14 @@ function App() {
 								<BiWeekly
 									header="Biweekly Update 1"
 									pdfPath="/biweekly-update-1.pdf" />
-							}/>
+							} />
+						<Route
+							path="/midterm-update"
+							element={
+								<BiWeekly
+									header="Midterm Update"
+									pdfPath="/midterm-update.pdf" />
+							} />
 					</Routes>
 				</div>
 			</div>
