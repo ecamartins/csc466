@@ -27,6 +27,10 @@ const PAGES: PageEntry[] = [
 		header: "BIWEEKLY UPDATE 1",
 		path: AppPageType.BIWEEKLY1,
 	},
+	{
+		header: "MIDTERM UPDATE",
+		path: AppPageType.MIDTERM,
+	},
 ]
 
 export const NavBar: React.FC<NavBarProps> = React.memo(() => {
@@ -54,7 +58,12 @@ export const NavBar: React.FC<NavBarProps> = React.memo(() => {
                 navigate("/bw1");
                 break;
 
+            case AppPageType.MIDTERM:
+                navigate("/midterm-update");
+                break;
+
             default:
+				throw new Error(`unsupported path ${page}`)
 
         }
     };
