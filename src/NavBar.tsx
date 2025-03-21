@@ -31,6 +31,10 @@ const PAGES: PageEntry[] = [
 		header: "MIDTERM UPDATE",
 		path: AppPageType.MIDTERM,
 	},
+	{
+		header: "BIWEEKLY UPDATE 3",
+		path: AppPageType.BIWEEKLY3,
+	},
 ]
 
 export const NavBar: React.FC<NavBarProps> = React.memo(() => {
@@ -60,6 +64,10 @@ export const NavBar: React.FC<NavBarProps> = React.memo(() => {
 
             case AppPageType.MIDTERM:
                 navigate("/midterm-update");
+                break;
+
+            case AppPageType.BIWEEKLY3:
+                navigate("/bw3");
                 break;
 
             default:
