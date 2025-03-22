@@ -4,6 +4,7 @@ export enum AppPageType {
     PROPOSAL,
 	BIWEEKLY1,
 	MIDTERM,
+	BIWEEKLY3,
 }
 
 interface LogEntries {
