@@ -1,6 +1,6 @@
 import { AppBar, Box, Container, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
 import * as React from "react";
-import { AppPageType } from "./utils/common";
+import { AppPageType, makePath } from "./utils/common";
 import RouterIcon from '@mui/icons-material/Router';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from "react-router-dom";
@@ -35,146 +35,125 @@ const PAGES: PageEntry[] = [
 		header: "BIWEEKLY UPDATE 3",
 		path: AppPageType.BIWEEKLY3,
 	},
+	{
+		header: "PRESENTATION",
+		path: AppPageType.PRESENTATION,
+	},
 ]
 
 export const NavBar: React.FC<NavBarProps> = React.memo(() => {
-    const navigate = useNavigate();
+	const navigate = useNavigate();
 
-    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+	const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
-    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorElNav(event.currentTarget);
-    };
+	const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+		setAnchorElNav(event.currentTarget);
+	};
 
-    const handleCloseNavMenu = (page: AppPageType) => {
-        setAnchorElNav(null);
-        
-        switch (page){
-            case AppPageType.HOME:
-                navigate("/");
-                break;
+	const handleCloseNavMenu = (page: AppPageType) => {
+		setAnchorElNav(null);
+		navigate(makePath(page))
+	};
 
-            case AppPageType.PROPOSAL:
-                navigate("/proposal");
-                break;
+	return (
+		<>
+			<AppBar position="fixed">
+				<Container maxWidth={false} disableGutters sx={{ px: 2 }}>
+					<Toolbar disableGutters sx={{ px: 2 }}>
+						{/* Left Section */}
+						<RouterIcon
+							sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, cursor: 'pointer' }}
+							onClick={() => navigate("/")}
+						/>
+						<Typography
+							variant="h6"
+							noWrap
+							component="a"
+							sx={{
+								mr: 2,
+								display: { xs: 'none', md: 'flex' },
+								fontFamily: 'monospace',
+								fontWeight: 700,
+								letterSpacing: '.3rem',
+								color: 'inherit',
+								textDecoration: 'none',
+								cursor: 'pointer',
+							}}
+							onClick={() => handleCloseNavMenu(AppPageType.HOME)}
+						>
+							CSC466-Project
+						</Typography>
 
-            case AppPageType.BIWEEKLY1:
-                navigate("/bw1");
-                break;
-
-            case AppPageType.MIDTERM:
-                navigate("/midterm-update");
-                break;
-
-            case AppPageType.BIWEEKLY3:
-                navigate("/bw3");
-                break;
-
-            default:
-				throw new Error(`unsupported path ${page}`)
-
-        }
-    };
-
-    return (
-        <>
-            <AppBar position="fixed">
-                <Container maxWidth={false} disableGutters sx={{ px: 2 }}>
-                    <Toolbar disableGutters sx={{ px: 2 }}>
-                        {/* Left Section */}
-                        <RouterIcon
-                            sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, cursor: 'pointer' }}
-                            onClick={() => navigate("/")}
-                        />
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="a"
-                            sx={{
-                                mr: 2,
-                                display: { xs: 'none', md: 'flex' },
-                                fontFamily: 'monospace',
-                                fontWeight: 700,
-                                letterSpacing: '.3rem',
-                                color: 'inherit',
-                                textDecoration: 'none',
-                                cursor: 'pointer',
-                            }}
-                            onClick={() => handleCloseNavMenu(AppPageType.HOME)}
-                        >
-                            CSC466-Project
-                        </Typography>
-
-                        {/* Dropdown Menu Icon for Small Screens */}
-                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                            <IconButton
-                                size="large"
-                                aria-label="menu"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                onClick={handleOpenNavMenu}
-                                color="inherit"
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                            <Menu
-                                id="menu-appbar"
-                                anchorEl={anchorElNav}
-                                anchorOrigin={{
-                                    vertical: 'bottom',
-                                    horizontal: 'left',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'left',
-                                }}
-                                open={Boolean(anchorElNav)}
-                                onClose={() => setAnchorElNav(null)}
-                            >
+						{/* Dropdown Menu Icon for Small Screens */}
+						<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+							<IconButton
+								size="large"
+								aria-label="menu"
+								aria-controls="menu-appbar"
+								aria-haspopup="true"
+								onClick={handleOpenNavMenu}
+								color="inherit"
+							>
+								<MenuIcon />
+							</IconButton>
+							<Menu
+								id="menu-appbar"
+								anchorEl={anchorElNav}
+								anchorOrigin={{
+									vertical: 'bottom',
+									horizontal: 'left',
+								}}
+								keepMounted
+								transformOrigin={{
+									vertical: 'top',
+									horizontal: 'left',
+								}}
+								open={Boolean(anchorElNav)}
+								onClose={() => setAnchorElNav(null)}
+							>
 								{
 									PAGES.map((entry) => {
 										return (
-											<MenuItem key={entry.path} 
+											<MenuItem key={entry.path}
 												onClick={() => handleCloseNavMenu(entry.path)}>
 												<Typography textAlign="center">{entry.header}</Typography>
 											</MenuItem>
 										)
 									})
 								}
-                            </Menu>
-                        </Box>
+							</Menu>
+						</Box>
 
-                        {/* Title for Small Screens */}
-                        <RouterIcon
-                            sx={{ display: { xs: 'flex', md: 'none' }, mr: 1, cursor: 'pointer' }}
-                            onClick={() => navigate("/")}
-                        />
-                        <Typography
-                            variant="h5"
-                            noWrap
-                            component="a"
-                            sx={{
-                                mr: 2,
-                                display: { xs: 'flex', md: 'none' },
-                                flexGrow: 1,
-                                fontFamily: 'monospace',
-                                fontWeight: 700,
-                                letterSpacing: '.3rem',
-                                color: 'inherit',
-                                textDecoration: 'none',
-                                cursor: 'pointer',
-                            }}
-                            onClick={() => handleCloseNavMenu(AppPageType.HOME)}
-                        >
-                            CSC466-Project
-                        </Typography>
+						{/* Title for Small Screens */}
+						<RouterIcon
+							sx={{ display: { xs: 'flex', md: 'none' }, mr: 1, cursor: 'pointer' }}
+							onClick={() => navigate("/")}
+						/>
+						<Typography
+							variant="h5"
+							noWrap
+							component="a"
+							sx={{
+								mr: 2,
+								display: { xs: 'flex', md: 'none' },
+								flexGrow: 1,
+								fontFamily: 'monospace',
+								fontWeight: 700,
+								letterSpacing: '.3rem',
+								color: 'inherit',
+								textDecoration: 'none',
+								cursor: 'pointer',
+							}}
+							onClick={() => handleCloseNavMenu(AppPageType.HOME)}
+						>
+							CSC466-Project
+						</Typography>
 
-                        {/* Spacer */}
-                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} />
+						{/* Spacer */}
+						<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} />
 
-                        {/* Right Section */}
-                        <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+						{/* Right Section */}
+						<Box sx={{ display: { xs: 'none', md: 'flex' } }}>
 							{
 								PAGES.map((entry) => {
 									return (
@@ -189,10 +168,10 @@ export const NavBar: React.FC<NavBarProps> = React.memo(() => {
 									)
 								})
 							}
-                        </Box>
-                    </Toolbar>
-                </Container>
-            </AppBar>
-        </>
-    );
+						</Box>
+					</Toolbar>
+				</Container>
+			</AppBar>
+		</>
+	);
 });
