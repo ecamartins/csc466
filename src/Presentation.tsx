@@ -1,6 +1,7 @@
 import { Typography, Box } from "@mui/material";
 
-const videoUrl: string = "https://csc466bucket.haln.dev/presentation-final.mp4";
+const videoUrl: string = "https://www.youtube.com/watch?v=M2sQdmR381A";
+const repositoryUrl: string = "https://github.com/hn275/distributed-storage";
 
 export function Presentation() {
 	return (
@@ -8,11 +9,11 @@ export function Presentation() {
 			<Box
 				width="100%"
 				mb="3em"
-				mt="10em"
+				pt="5em"
 				display="flex"
 				flexDirection="column"
 				flex="center"
-				gap="1.5rem"
+				gap="1em"
 			>
 				<Typography
 					variant="h6"
@@ -30,30 +31,54 @@ export function Presentation() {
 					Project Presentation
 				</Typography>
 
-				<Typography
-					align="center"
-					component="a"
+				<Box
+					display="flex"
+					flexDirection="column"
+					width="max-content"
 					mx="auto"
-					href="https://github.com/hn275/distributed-storage"
-					target="_blank"
-					sx={{
-						fontWeight: "normal",
-						textDecoration: "underline",
-						fontStyle: "italic",
-						color: "blue",
-						fontSize: 15,
-					}}
 				>
-					Github Repository: distributed-storage
-				</Typography>
-
-				<Box mx="auto" width="80%">
-					<video controls width="100%" height="auto">
-						<source src={videoUrl} type="video/mp4" />
-						Your browser does not support the video tag.
-					</video>
+					<Link text="GitHub Repository" href={repositoryUrl} />
+					<Link text="YouTube Presentation" href={videoUrl} />
 				</Box>
 			</Box>
 		</main>
+	);
+}
+
+type LinkProp = {
+	text: string;
+	href: string;
+};
+
+function Link(props: LinkProp) {
+	const { text, href } = props;
+
+	return (
+		<Box component="span">
+			<Typography
+				component="span"
+				sx={{
+					fontWeight: "bold",
+					fontSize: 15,
+				}}
+			>
+				{text}:&nbsp;
+			</Typography>
+
+			<Typography
+				component="a"
+				href={href}
+				target="_blank"
+				sx={{
+					fontWeight: "normal",
+					textDecoration: "underline",
+					fontStyle: "italic",
+					color: "blue",
+					fontSize: 15,
+				}}
+			>
+				{href}
+			</Typography>
+		</Box>
 	);
 }
