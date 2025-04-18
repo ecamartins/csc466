@@ -39,6 +39,10 @@ const PAGES: PageEntry[] = [
 		header: "PRESENTATION",
 		path: AppPageType.PRESENTATION,
 	},
+	{
+		header: "FINAL REPORT",
+		path: AppPageType.REPORT,
+	},
 ]
 
 export const NavBar: React.FC<NavBarProps> = React.memo(() => {
