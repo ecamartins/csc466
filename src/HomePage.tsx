@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 import * as React from "react";
 import { homePageDescription } from "./utils/constants";
 
@@ -26,6 +26,7 @@ export const HomePage: React.FC = React.memo(() => {
                     </Typography>
                 </div>
                 <p className="home-page-site-description">{homePageDescription}</p>
+                <a className="home-page-link" target="_blank" href="https://github.com/hn275/distributed-storage">Github Repository</a>
             </div>
         </div>
 
