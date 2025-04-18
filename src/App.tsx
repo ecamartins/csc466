@@ -54,6 +54,15 @@ function App() {
               path={makePath(AppPageType.PRESENTATION)}
               element={<Presentation />}
             />
+            <Route
+              path={makePath(AppPageType.REPORT)}
+              element={
+                <BiWeekly
+                  header="Final Report"
+                  pdfPath="/report.pdf"
+                />
+              }
+            />
           </Routes>
         </div>
       </div>

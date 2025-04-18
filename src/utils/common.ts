@@ -6,6 +6,7 @@ export enum AppPageType {
   MIDTERM,
   BIWEEKLY3,
   PRESENTATION,
+  REPORT,
 }
 
 export function makePath(p: AppPageType): string {
@@ -27,6 +28,9 @@ export function makePath(p: AppPageType): string {
 
     case AppPageType.PRESENTATION:
       return "/presentation";
+
+    case AppPageType.REPORT:
+      return "/report";
 
     default:
       throw new Error(`unhandled path enum ${p}`);
