@@ -1,4 +1,4 @@
-import { Box, Link, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import * as React from "react";
 import { homePageDescription } from "./utils/constants";
 
